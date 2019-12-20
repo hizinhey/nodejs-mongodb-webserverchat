@@ -1,7 +1,6 @@
 package com.johnnghia.chatapp.Activitys;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +9,12 @@ import android.widget.EditText;
 
 import com.johnnghia.chatapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     Button btnUser, btnAdmin;
     EditText EdtUser;
 
     // variable to save number in edtUser
     static int tempUser; // it is converted in checkNumber
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(convertNumber()){
                     Intent intentUser = new Intent(MainActivity.this, ChatActivity.class);
-                    intentUser.putExtra("id", tempUser);
-                    intentUser.putExtra("idOpposite", 1);
+                    intentUser.putExtra("id", tempUser); // tempUser get value from convertNumber func
+                    intentUser.putExtra("idSendTo", 1);
                     startActivity(intentUser);
                 }
             }

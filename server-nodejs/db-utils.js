@@ -21,42 +21,29 @@ mongoose.connect(uri,
     }
 );
 
-let db = mongoose.connection;
+//const db = mongoose.connection;
+
+let db = {}
 let Model = mongoose.model('messages', UserSC);
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-db.findUsers = () => {
-    Model.find().lean().select('id_user').exec((err, res) => {
-        if (err) { 
-            console.log(err);
-            return null;
-        }
-        else {
-            console.log(res);
-            return JSON.stringify(res);
-        }
-    });
+
+db.findUsers = async () => {
+    let temp  = await Model.find().lean().select('id_user').exec();
+    return temp;
 }
 
-db.findMess = (id) => {
-    Model.find({ 'id_user': id }).exec((err, res) => {
-        if (err) { 
-            console.log(err); 
-            return null;
-        }
-        else {
-            console.log(res[0].get("mess", Array));
-            return JSON.stringify(res[0].get("mess", Array));
-        }
-    });
+db.findMess = async (id) => {
+    let temp = await Model.find({ 'id_user': id }).exec();
+    return temp[0].get("mess", Array);
 }
 
-db.addMess = (_id, _mess, _send) => {
+db.addMess = async (_id, _mess, _send) => {
     if(_id === 1){
         console.log("ID wrong");
         return;
     }
+    console.log("Dang add trong utils");
     Model.exists({'id_user': _id}, async (err, res) => {
         if(!res) {
             // Tao ra SC moi de add tin nhan vao
@@ -76,7 +63,6 @@ db.addMess = (_id, _mess, _send) => {
                     return false;
                 }
                 else {
-                    console.log(res);
                     return true;
                 }
             });

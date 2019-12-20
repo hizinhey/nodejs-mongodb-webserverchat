@@ -52,7 +52,7 @@
         android:layout_toStartOf="@+id/mess_img_send"
         android:layout_margin="15dp"
         android:hint="Hãy nhắn gì đó cho shop!"/>
-    <ImageView
+    <ImageButton
         android:id="@+id/mess_img_send"
         android:layout_width="50dp"
         android:layout_height="50dp"

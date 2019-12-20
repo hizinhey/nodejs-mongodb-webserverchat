@@ -1,23 +1,26 @@
 package com.johnnghia.chatapp.Subjects;
 
+import org.joda.time.DateTime;
+
+import java.util.Date;
 import java.sql.Time;
 
 public class Message {
-    Time timeSend;
+    DateTime timeSend;
     String detailMess;
     boolean adminSend;
 
-    public Message(Time timeSend, String detailMess, boolean adminSend) {
+    public Message(DateTime timeSend, String detailMess, boolean adminSend) {
         this.timeSend = timeSend;
         this.detailMess = detailMess;
         this.adminSend = adminSend;
     }
 
-    public Time getTimeSend() {
+    public DateTime getTimeSend() {
         return timeSend;
     }
 
-    public void setTimeSend(Time timeSend) {
+    public void setTimeSend(DateTime timeSend) {
         this.timeSend = timeSend;
     }
 
